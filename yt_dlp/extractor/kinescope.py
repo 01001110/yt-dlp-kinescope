@@ -49,7 +49,7 @@ class KinescopeIE(InfoExtractor):
             formats.extend(self._extract_m3u8_formats(
                 hls_url, video_id, 'mp4', m3u8_id='hls', fatal=False))
 
-        shakahls_url = sources.get('shakahls')
+        shakahls_url = traverse_obj(sources, ('shakahls', 'src'))
         if shakahls_url and shakahls_url != hls_url:
             formats.extend(self._extract_m3u8_formats(
                 shakahls_url, video_id, 'mp4', m3u8_id='shakahls', fatal=False))
